@@ -6,10 +6,11 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject slotPrefab;
     public Transform slotsParent;
-    public PlayerInventory inventory;
+    private PlayerInventory inventory;
 
     void Start()
-    {
+    { 
+        inventory = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerInventory>();
         UpdateUI();
     }
 
@@ -22,7 +23,7 @@ public class InventoryUI : MonoBehaviour
             if (powerup.quantity > 0)
             {
                 GameObject slot = Instantiate(slotPrefab, slotsParent);
-                slot.GetComponent<PowerupSlotUI>().Setup(powerup.icon, powerup.quantity);
+                slot.GetComponent<PowerupSlotUI>().Setup(powerup.icon, powerup.quantity, powerup.prefab, powerup.type);
             }
         }
     }
