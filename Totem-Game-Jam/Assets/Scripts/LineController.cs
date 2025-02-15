@@ -17,6 +17,8 @@ public class LineController : MonoBehaviour
     public GameObject winTab;
     bool loadingNextLevel = false;
     float loadingTimer = 0;
+    float winDelay = 3.0f; // Number of seconds to wait with loading the level after winning
+
     void Start()
     {
         // Get components
@@ -44,11 +46,11 @@ public class LineController : MonoBehaviour
         { 
             lineRenderer.SetPosition(i, nodes[i].position + zOffset);
         }
-
+        // Load next level if all markers are touched
         if (loadingNextLevel)
         {
             loadingTimer += Time.deltaTime;
-            if (loadingTimer > 5)
+            if (loadingTimer > winDelay)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }

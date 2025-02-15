@@ -13,14 +13,12 @@ public class BuildModeController : MonoBehaviour
     private PlayerBehaviour playerBehaviour;
     private LineController lineController;
 
-    private void Awake()
+    private void Start()
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
         lineController = FindFirstObjectByType<LineController>();
         EnterBuildMode();
     }
-
-
 
     public void SetBuilderMode(bool newBuilderState)
     {

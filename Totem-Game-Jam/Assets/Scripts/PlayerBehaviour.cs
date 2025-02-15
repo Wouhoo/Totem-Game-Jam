@@ -65,7 +65,6 @@ public class PlayerBehaviour : MonoBehaviour
         _rigidbody.simulated = !newState;
     }
 
-    public void Respawn() { Respawn(false); }
     public void Respawn(bool asFrozen)
     {
         GetComponent<SpriteRenderer>().enabled = true;
