@@ -12,24 +12,42 @@ public class PlayerBehaviour : MonoBehaviour
     [Tooltip("Limit on X-Axis velocity. If the velocity is surpassed, stop providing further force. Ignored if IsConstantlyAccelerating")]
     public float VelocityLimit;
 
-    //public GameObject speedMeter;
+    public GameObject speedMeter;
     private Rigidbody2D _rigidbody;
     private Vector3 spawnLocation;
     private bool isFrozen = false;
 
-    void Start()
+    void Awake()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         spawnLocation = GameObject.FindWithTag("Respawn").transform.position;
-
-        Respawn(true);
     }
 
 
     void Update()
     {
         ApplyMovement();
-        //speedMeter.GetComponent<TextMeshProUGUI>().text = ""+_rigidbody.linearVelocity.magnitude;
+        float currSpeed = _rigidbody.linearVelocity.magnitude;
+        speedMeter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currSpeed.ToString();
+
+        Color speedColor = Color.blue;
+        if (currSpeed > 7)
+        {
+            speedColor = Color.red;
+        }
+        else if (currSpeed > 4)
+        {
+            speedColor = Color.yellow;
+        }
+        speedMeter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = speedColor;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag != "Hazard") return;
+
+        Kill();
+        GameObject.Find("Canvas").GetComponent<BuildModeController>().SetBuilderMode(true);
     }
 
 
@@ -47,7 +65,6 @@ public class PlayerBehaviour : MonoBehaviour
         _rigidbody.simulated = !newState;
     }
 
-    public void Respawn() { Respawn(false); }
     public void Respawn(bool asFrozen)
     {
         GetComponent<SpriteRenderer>().enabled = true;
@@ -60,7 +77,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void Kill()
     {
         SetFrozen(true);
-        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         GetComponent<SpriteRenderer>().enabled = false;
     }
 }

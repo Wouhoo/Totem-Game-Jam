@@ -1,14 +1,23 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Linq;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LineController : MonoBehaviour
 {
     private LineRenderer lineRenderer;
     private float lineWidth; // Note: the collider assumes the line's width is constant across all segments
     private Transform[] nodes;
+    private GameObject[] markers;
     private PolygonCollider2D polygonCollider;
     private Vector2[] colliderPoints;
+    private Vector3 zOffset = new Vector3(0, 0, 2); // Make line render behind nodes
+
+    public GameObject winTab;
+    bool loadingNextLevel = false;
+    float loadingTimer = 0;
+    float winDelay = 3.0f; // Number of seconds to wait with loading the level after winning
 
     void Start()
     {
@@ -20,11 +29,14 @@ public class LineController : MonoBehaviour
         // Get nodes & extract their transforms
         int childCount = transform.childCount;
         nodes = new Transform[childCount];
-        for(int i = 0; i < childCount; i++)
+        for (int i = 0; i < childCount; i++)
         {
             nodes[i] = transform.GetChild(i);
+
         }
+        markers = GameObject.FindGameObjectsWithTag("Marker");
         lineRenderer.positionCount = nodes.Length;
+        GenerateCollider();
     }
 
     void LateUpdate()
@@ -32,7 +44,16 @@ public class LineController : MonoBehaviour
         // Make line go through nodes
         for (int i = 0; i < nodes.Length; i++) 
         { 
-            lineRenderer.SetPosition(i, new Vector3(nodes[i].position.x, nodes[i].position.y, -3)); // Force line to always have the same z
+            lineRenderer.SetPosition(i, nodes[i].position + zOffset);
+        }
+        // Load next level if all markers are touched
+        if (loadingNextLevel)
+        {
+            loadingTimer += Time.deltaTime;
+            if (loadingTimer > winDelay)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
@@ -64,11 +85,31 @@ public class LineController : MonoBehaviour
 
         // Return list of all four corner points, transformed to world position
         Vector2[] colliderPoints = new Vector2[] {
-            transform.InverseTransformPoint(endPoints[0] + offsets[0]),
-            transform.InverseTransformPoint(endPoints[1] + offsets[0]),
-            transform.InverseTransformPoint(endPoints[1] + offsets[1]),
-            transform.InverseTransformPoint(endPoints[0] + offsets[1])
+            transform.InverseTransformPoint(endPoints[0] + offsets[0]) + zOffset,
+            transform.InverseTransformPoint(endPoints[1] + offsets[0]) + zOffset,
+            transform.InverseTransformPoint(endPoints[1] + offsets[1]) + zOffset,
+            transform.InverseTransformPoint(endPoints[0] + offsets[1]) + zOffset
         };
         return colliderPoints;
+    }
+
+    public void NotifyMarkerPassed()
+    {
+        bool gameComplete = true;
+        foreach (GameObject t in markers)
+        {
+            if (!t.GetComponent<MarkerBehaviour>().hasBeenPassed)
+            {
+                gameComplete = false;
+                break;
+            } 
+        }
+
+        if (gameComplete)
+        {
+            winTab.SetActive(true);
+            loadingNextLevel = true;
+        }
+        else print("GAME NOT DONE!");
     }
 }
