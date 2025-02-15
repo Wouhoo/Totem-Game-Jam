@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     // Script for managing the in-game pause screen
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject helpScreen;
+    [SerializeField] GameObject playModeButton;
     private SFXPlayer sfxPlayer;
     private bool paused;
 
@@ -35,6 +36,7 @@ public class PauseManager : MonoBehaviour
     {
         sfxPlayer.ClickButtonSound();
         pauseScreen.SetActive(true);
+        playModeButton.SetActive(false);
         paused = true;
         Time.timeScale = 0;
     }
@@ -44,6 +46,7 @@ public class PauseManager : MonoBehaviour
         sfxPlayer.ClickButtonSound();
         helpScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        playModeButton.SetActive(true);
         paused = false;
         Time.timeScale = 1;
     }
