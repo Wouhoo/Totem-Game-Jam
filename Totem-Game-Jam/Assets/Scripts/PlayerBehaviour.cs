@@ -70,6 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         this.transform.position = spawnLocation;
         _rigidbody.rotation = 0;
+        _rigidbody.angularVelocity = 0;
         _rigidbody.linearVelocity = new Vector2(0, 0);
         SetFrozen(asFrozen);
     }
