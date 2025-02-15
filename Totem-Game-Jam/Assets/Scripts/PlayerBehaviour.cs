@@ -17,15 +17,12 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 spawnLocation;
     private bool isFrozen = false;
 
-    float timer = 0.1f;
-    bool isDead = false;
     void Start()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         spawnLocation = GameObject.FindWithTag("Respawn").transform.position;
 
-
-        //SetFrozen(true);
+        Respawn(true);
     }
 
 
