@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Node
   - Hazard
+  - Marker
+  - SFX
   layers:
   - Default
   - TransparentFX

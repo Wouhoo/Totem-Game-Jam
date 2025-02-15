@@ -10,6 +10,8 @@ public class MarkerBehaviour : MonoBehaviour
 
     [SerializeField] private float _value;
 
+    [SerializeField] private SFXPlayer _sfxPlayer;
+
     public bool hasBeenPassed = false;
 
     private enum Type
@@ -34,6 +36,7 @@ public class MarkerBehaviour : MonoBehaviour
                 text.text = "F";
             }
         }
+        _sfxPlayer = FindAnyObjectByType<SFXPlayer>();
     }
 
     void OnTriggerEnter2D(UnityEngine.Collider2D collider)
@@ -49,6 +52,7 @@ public class MarkerBehaviour : MonoBehaviour
                             if (rigidbody.linearVelocity.magnitude > _value)
                             {
                                 Debug.Log("Player Over Limit!");
+                                _sfxPlayer.FailLevelSound();
                                 if (collider.gameObject.TryGetComponent(out PlayerBehaviour player))
                                 {
                                     player.Kill();
@@ -57,6 +61,7 @@ public class MarkerBehaviour : MonoBehaviour
                             else
                             {
                                 hasBeenPassed = true;
+                                _sfxPlayer.PassSound();
                                 GameObject.FindFirstObjectByType<LineController>().NotifyMarkerPassed();
 
                             }
@@ -71,6 +76,7 @@ public class MarkerBehaviour : MonoBehaviour
                             if (rigidbody.linearVelocity.magnitude < _value)
                             {
                                 Debug.Log("Player Under Limit!");
+                                _sfxPlayer.FailLevelSound();
                                 if (collider.gameObject.TryGetComponent(out PlayerBehaviour player))
                                 {
                                     player.Kill();
@@ -79,6 +85,7 @@ public class MarkerBehaviour : MonoBehaviour
                             else
                             {
                                 hasBeenPassed = true;
+                                _sfxPlayer.PassSound();
                                 FindFirstObjectByType<LineController>().NotifyMarkerPassed();
                             }
                         }

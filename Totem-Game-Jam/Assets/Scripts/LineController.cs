@@ -19,12 +19,16 @@ public class LineController : MonoBehaviour
     float loadingTimer = 0;
     float winDelay = 3.0f; // Number of seconds to wait with loading the level after winning
 
+    [SerializeField] private SFXPlayer _sfxPlayer;
+
     void Start()
     {
         // Get components
         lineRenderer = GetComponent<LineRenderer>();
         lineWidth = lineRenderer.startWidth;
         polygonCollider = GetComponent<PolygonCollider2D>();
+
+        _sfxPlayer = FindAnyObjectByType<SFXPlayer>();
 
         // Get nodes & extract their transforms
         int childCount = transform.childCount;
@@ -107,6 +111,7 @@ public class LineController : MonoBehaviour
 
         if (gameComplete)
         {
+            _sfxPlayer.FinishLevelSound();
             winTab.SetActive(true);
             loadingNextLevel = true;
         }

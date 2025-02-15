@@ -832,6 +832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winTab: {fileID: 34588085}
+  _sfxPlayer: {fileID: 0}
 --- !u!120 &363249221
 LineRenderer:
   serializedVersion: 2
@@ -3738,6 +3739,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClickSound: {fileID: 8300000, guid: 5d8182df815914248810940dc0b1e968, type: 3}
+  markerPassSound: {fileID: 0}
+  FinishSound: {fileID: 0}
+  FailSound: {fileID: 0}
 --- !u!82 &2146883139
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3940,6 +3944,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5387033600031763646, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284794958194067815, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284794958194067815, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284794958194067815, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284794958194067815, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7101618669280918681, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -4028,7 +4052,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7009192012244136873, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7458665657365044714, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5c87a7f9823b2cf4396621b694fe76cd, type: 3}
