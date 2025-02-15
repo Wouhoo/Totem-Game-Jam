@@ -30,7 +30,7 @@ public class PlayerBehaviour : MonoBehaviour
         float currSpeed = _rigidbody.linearVelocity.magnitude;
         speedMeter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currSpeed.ToString();
 
-        Color speedColor = Color.blue;
+        Color speedColor = Color.cyan;
         if (currSpeed > 7)
         {
             speedColor = Color.red;

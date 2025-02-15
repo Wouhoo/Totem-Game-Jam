@@ -58,6 +58,7 @@ public class MarkerBehaviour : MonoBehaviour
                             {
                                 hasBeenPassed = true;
                                 GameObject.FindFirstObjectByType<LineController>().NotifyMarkerPassed();
+
                             }
                         }
                         break;
