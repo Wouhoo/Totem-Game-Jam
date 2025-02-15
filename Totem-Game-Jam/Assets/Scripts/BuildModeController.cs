@@ -8,12 +8,14 @@ public class BuildModeController : MonoBehaviour
 
     [SerializeField] Image builderButton;
     private PlayerBehaviour playerBehaviour;
+    private LineController lineController;
     private Color buildModeColor = Color.green;
     private Color playModeColor = Color.red;
 
     private void Start()
     {
-        playerBehaviour = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
+        playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
+        lineController = FindFirstObjectByType<LineController>();
     }
 
     public void ToggleBuilderMode()
@@ -24,6 +26,7 @@ public class BuildModeController : MonoBehaviour
         {
             builderButton.color = playModeColor;
             playerBehaviour.SetFrozen(false);
+            lineController.GenerateCollider(); // Generate line collider
         }
         // If we are now in build mode
         else

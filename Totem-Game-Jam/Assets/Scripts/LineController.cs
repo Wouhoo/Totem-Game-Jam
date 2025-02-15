@@ -34,12 +34,10 @@ public class LineController : MonoBehaviour
         { 
             lineRenderer.SetPosition(i, new Vector3(nodes[i].position.x, nodes[i].position.y, -3)); // Force line to always have the same z
         }
-        // Regenerate collider
-        // NOTE: When build & playmode are implemented, this should be done when pressing play, not every frame
-        GenerateCollider();
     }
 
-    private void GenerateCollider()
+    // Regenerate collider (called from the build mode controller)
+    public void GenerateCollider()
     {
         int no_lines = nodes.Length - 1;
         polygonCollider.pathCount = no_lines;
