@@ -15,17 +15,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial-2.unity
     guid: ca132d60e231ee447a1c3151485bc391
   - enabled: 1
-    path: Assets/Scenes/LevelTemplate.unity
-    guid: 68024392eb7386a4cb714b440118adbf
-  - enabled: 1
     path: Assets/Scenes/Level_UpNDown.unity
     guid: dbce4e38e66fa79429ed13cfb3504c63
   - enabled: 1
     path: Assets/Scenes/Level_LeftNRight.unity
     guid: c213bc2fcc0aa294fabc8bc14aca51a9
   - enabled: 1
+    path: Assets/Scenes/Level_Wedge.unity
+    guid: 3ad4dff3a5ef815418f5d1ce21dab76b
+  - enabled: 1
+    path: Assets/Scenes/Level_ThreadTheNeedle.unity
+    guid: a26ac8d10731ad14dbaa99815af51ad3
+  - enabled: 1
+    path: Assets/Scenes/Level_ZigZag.unity
+    guid: d186d3248acd63c4b97801eeaa7fd129
+  - enabled: 1
     path: Assets/Scenes/Level_Rollercoaster.unity
     guid: bea56295eea95b542815d67efd9db4e6
+  - enabled: 0
+    path: Assets/Scenes/PowerupLevel.unity
+    guid: 0468f6b82d8265340b994a91c1ee758b
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: a19469727dc0b3846bdf566b262cbd4f

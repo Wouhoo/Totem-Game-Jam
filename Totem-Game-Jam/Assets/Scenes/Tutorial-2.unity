@@ -2705,7 +2705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 791, y: 227}
+  m_AnchoredPosition: {x: 662, y: 227}
   m_SizeDelta: {x: 596.1, y: 165.7149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401979847
@@ -2728,9 +2728,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Red signs can be passed
+  m_text: 'Red signs can only be passed
 
-    with a speed lower than
+    with a speed LOWER than
 
     their value.'
   m_isRightToLeft: 0
@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Blue signs can be passed with a speed higher than their value.
+  m_text: Blue signs can only be passed with a speed HIGHER than their value.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
