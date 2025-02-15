@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
     // Script for managing the main menu.
     [SerializeField] GameObject helpScreen;
+    [SerializeField] GameObject levelSelectScreen;
     private SFXPlayer sfxPlayer;
 
     void Start()
@@ -18,7 +20,13 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         sfxPlayer.ClickButtonSound();
-        SceneManager.LoadScene(1); // Make sure the level has index 1 in the build settings !!!
+        levelSelectScreen.SetActive(true);
+    }
+
+    public void LeaveLevelSelect()
+    {
+        sfxPlayer.ClickButtonSound();
+        levelSelectScreen.SetActive(false);
     }
 
     public void QuitGame()
@@ -43,5 +51,11 @@ public class MenuManager : MonoBehaviour
         sfxPlayer.ClickButtonSound();
         Time.timeScale = 1;
         helpScreen.SetActive(false);
+    }
+
+    public void LoadLevel(int level)
+    {
+        sfxPlayer.ClickButtonSound();
+        SceneManager.LoadScene(level); // Make sure all levels are added to build settings in the right order
     }
 }

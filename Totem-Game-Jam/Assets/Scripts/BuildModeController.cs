@@ -12,7 +12,7 @@ public class BuildModeController : MonoBehaviour
     private Color buildModeColor = Color.green;
     private Color playModeColor = Color.red;
 
-    private void Start()
+    private void Awake()
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
         lineController = FindFirstObjectByType<LineController>();

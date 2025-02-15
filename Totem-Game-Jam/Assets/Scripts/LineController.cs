@@ -9,6 +9,7 @@ public class LineController : MonoBehaviour
     private Transform[] nodes;
     private PolygonCollider2D polygonCollider;
     private Vector2[] colliderPoints;
+    private Vector3 zOffset = new Vector3(0, 0, 2); // Make line render behind nodes
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class LineController : MonoBehaviour
             nodes[i] = transform.GetChild(i);
         }
         lineRenderer.positionCount = nodes.Length;
+        GenerateCollider();
     }
 
     void LateUpdate()
@@ -32,7 +34,7 @@ public class LineController : MonoBehaviour
         // Make line go through nodes
         for (int i = 0; i < nodes.Length; i++) 
         { 
-            lineRenderer.SetPosition(i, new Vector3(nodes[i].position.x, nodes[i].position.y, -3)); // Force line to always have the same z
+            lineRenderer.SetPosition(i, nodes[i].position + zOffset);
         }
     }
 
@@ -64,10 +66,10 @@ public class LineController : MonoBehaviour
 
         // Return list of all four corner points, transformed to world position
         Vector2[] colliderPoints = new Vector2[] {
-            transform.InverseTransformPoint(endPoints[0] + offsets[0]),
-            transform.InverseTransformPoint(endPoints[1] + offsets[0]),
-            transform.InverseTransformPoint(endPoints[1] + offsets[1]),
-            transform.InverseTransformPoint(endPoints[0] + offsets[1])
+            transform.InverseTransformPoint(endPoints[0] + offsets[0]) + zOffset,
+            transform.InverseTransformPoint(endPoints[1] + offsets[0]) + zOffset,
+            transform.InverseTransformPoint(endPoints[1] + offsets[1]) + zOffset,
+            transform.InverseTransformPoint(endPoints[0] + offsets[1]) + zOffset
         };
         return colliderPoints;
     }
