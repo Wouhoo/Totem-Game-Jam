@@ -16,6 +16,7 @@ public class BuildModeController : MonoBehaviour
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
         lineController = FindFirstObjectByType<LineController>();
+        EnterBuildMode();
     }
 
     public void ToggleBuilderMode()
@@ -24,15 +25,25 @@ public class BuildModeController : MonoBehaviour
         // If we are now in play mode (after pressing the button)
         if (!builderModeActive)
         {
-            builderButton.color = playModeColor;
-            playerBehaviour.SetFrozen(false);
-            lineController.GenerateCollider(); // Generate line collider
+            EnterPlayMode();
         }
         // If we are now in build mode
         else
         {
-            builderButton.color = buildModeColor;
-            playerBehaviour.Respawn(true);
+            EnterBuildMode();
         }
+    }
+
+    private void EnterPlayMode()
+    {
+        builderButton.color = playModeColor;
+        playerBehaviour.SetFrozen(false);
+        lineController.GenerateCollider(); // Generate line collider
+    }
+
+    private void EnterBuildMode()
+    {
+        builderButton.color = buildModeColor;
+        playerBehaviour.Respawn(true);
     }
 }
