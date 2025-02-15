@@ -3,9 +3,9 @@ using TMPro;
 
 public class MarkerBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject _sign;
-    [SerializeField] private GameObject _line;
-    [SerializeField] private GameObject _arrow;
+    //[SerializeField] private GameObject _sign;
+    //[SerializeField] private GameObject _line;
+    //[SerializeField] private GameObject _arrow;
     [SerializeField] private GameObject _text;
 
     [SerializeField] private float _value;
@@ -23,28 +23,55 @@ public class MarkerBehaviour : MonoBehaviour
     {
         if (_type != Type.Finish)
         {
-            if (_text.TryGetComponent(out TMPro.TextMeshProUGUI text))
+            if (_text.TryGetComponent(out TMPro.TextMeshPro text))
             {
                 text.text = _value.ToString();
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(UnityEngine.Collider collider)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerBehaviour player))
+        if (collider.gameObject.CompareTag("Player"))
         {
-            if (_type == Type.Upper)
+            switch (_type)
             {
-                player.SetUpper(_value);
-            }
-            else if (_type == Type.Lower)
-            {
-                player.SetLower(_value);
-            }
-            else if (_type == Type.Finish)
-            {
-                player.Finish();
+                case Type.Upper:
+                    {
+                        if (collider.TryGetComponent(out Rigidbody2D rigidbody))
+                        {
+                            if (rigidbody.linearVelocity.magnitude > _value)
+                            {
+                                Debug.Log("Game Over");
+                            }
+                            else
+                            {
+                                Debug.Log("Player has passed");
+                            }
+                        }
+                        break;
+                    }
+                    
+                case Type.Lower:
+                    {
+                        if (collider.TryGetComponent(out Rigidbody2D rigidbody))
+                        {
+                            if (rigidbody.linearVelocity.magnitude < _value)
+                            {
+                                Debug.Log("Game Over");
+                            }
+                            else
+                            {
+                                Debug.Log("Player has passed");
+                            }
+                        }
+                        break;
+                    }
+                case Type.Finish:
+                    {
+                        Debug.Log("Player has finished");
+                        break;
+                    }
             }
         }
     }
