@@ -2886,6 +2886,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1628411353}
     m_Modifications:
+    - target: {fileID: 2831025730515245443, guid: caf3353da8e0bfb4da17849fc511ef09, type: 3}
+      propertyPath: _type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3950147052550528201, guid: caf3353da8e0bfb4da17849fc511ef09, type: 3}
       propertyPath: m_Name
       value: RedMarker

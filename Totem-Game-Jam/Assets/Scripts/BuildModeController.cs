@@ -20,6 +20,8 @@ public class BuildModeController : MonoBehaviour
         EnterBuildMode();
     }
 
+
+
     public void SetBuilderMode(bool newBuilderState)
     {
         if (builderModeActive == newBuilderState) return;

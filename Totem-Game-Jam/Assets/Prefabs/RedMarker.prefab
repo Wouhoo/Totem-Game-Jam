@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 3101910792001852870}
   m_Layer: 0
   m_Name: RedMarker
-  m_TagString: Untagged
+  m_TagString: Marker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 2753747439167259502}
   _value: 10
+  hasBeenPassed: 0
   _type: 0
 --- !u!61 &3101910792001852870
 BoxCollider2D:

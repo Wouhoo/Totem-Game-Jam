@@ -10,6 +10,8 @@ public class MarkerBehaviour : MonoBehaviour
 
     [SerializeField] private float _value;
 
+    public bool hasBeenPassed = false;
+
     private enum Type
     {
         Upper,
@@ -54,7 +56,8 @@ public class MarkerBehaviour : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("Player has passed");
+                                hasBeenPassed = true;
+                                GameObject.Find("Line").GetComponent<LineController>().NotifyMarkerPassed();
                             }
                         }
                         break;
@@ -74,7 +77,8 @@ public class MarkerBehaviour : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("Player has passed");
+                                hasBeenPassed = true;
+                                GameObject.Find("Line").GetComponent<LineController>().NotifyMarkerPassed();
                             }
                         }
                         break;

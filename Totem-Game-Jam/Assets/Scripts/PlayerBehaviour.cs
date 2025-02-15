@@ -12,7 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     [Tooltip("Limit on X-Axis velocity. If the velocity is surpassed, stop providing further force. Ignored if IsConstantlyAccelerating")]
     public float VelocityLimit;
 
-    //public GameObject speedMeter;
+    public GameObject speedMeter;
     private Rigidbody2D _rigidbody;
     private Vector3 spawnLocation;
     private bool isFrozen = false;
@@ -27,7 +27,19 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         ApplyMovement();
-        //speedMeter.GetComponent<TextMeshProUGUI>().text = ""+_rigidbody.linearVelocity.magnitude;
+        float currSpeed = _rigidbody.linearVelocity.magnitude;
+        speedMeter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currSpeed.ToString();
+
+        Color speedColor = Color.blue;
+        if (currSpeed > 7)
+        {
+            speedColor = Color.red;
+        }
+        else if (currSpeed > 4)
+        {
+            speedColor = Color.yellow;
+        }
+        speedMeter.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = speedColor;
     }
 
     void OnCollisionEnter2D(Collision2D col)
