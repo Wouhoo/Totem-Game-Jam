@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 25ca17f4652d1be458056d08b0d8b9dd
-  - enabled: 0
-    path: Assets/Scenes/LevelTemplate.unity
-    guid: 68024392eb7386a4cb714b440118adbf
   - enabled: 1
     path: Assets/Scenes/Level_Wedge.unity
     guid: 3ad4dff3a5ef815418f5d1ce21dab76b
