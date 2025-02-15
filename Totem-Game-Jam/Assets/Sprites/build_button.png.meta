@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f67e90d422d2a494ca77494b976fb323
+guid: b333849462e6f6c4182cd878298e77ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7734556714755349339
-    second: obamna_0
+      213: -4213135184436858803
+    second: build_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: obamna_0
+      name: build_button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 600
-        height: 600
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a425e9b5a559a490800000000000000
-      internalID: -7734556714755349339
+      spriteID: d40f0f43fdfe785c0800000000000000
+      internalID: -4213135184436858803
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      obamna_0: -7734556714755349339
+      build_button_0: -4213135184436858803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
