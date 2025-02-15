@@ -17,12 +17,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 spawnLocation;
     private bool isFrozen = false;
 
-    void Start()
+    void Awake()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         spawnLocation = GameObject.FindWithTag("Respawn").transform.position;
-
-        Respawn(true);
     }
 
 
@@ -30,6 +28,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         ApplyMovement();
         //speedMeter.GetComponent<TextMeshProUGUI>().text = ""+_rigidbody.linearVelocity.magnitude;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag != "Hazard") return;
+
+        Kill();
+        GameObject.Find("Canvas").GetComponent<BuildModeController>().SetBuilderMode(true);
     }
 
 
@@ -60,7 +66,6 @@ public class PlayerBehaviour : MonoBehaviour
     public void Kill()
     {
         SetFrozen(true);
-        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         GetComponent<SpriteRenderer>().enabled = false;
     }
 }

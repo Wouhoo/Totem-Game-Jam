@@ -6,11 +6,12 @@ public class BuildModeController : MonoBehaviour
 
     public bool builderModeActive = true;
 
+    public Sprite go_sprite;
+    public Sprite build_sprite;
+
     [SerializeField] Image builderButton;
     private PlayerBehaviour playerBehaviour;
     private LineController lineController;
-    private Color buildModeColor = Color.green;
-    private Color playModeColor = Color.red;
 
     private void Awake()
     {
@@ -19,6 +20,12 @@ public class BuildModeController : MonoBehaviour
         EnterBuildMode();
     }
 
+    public void SetBuilderMode(bool newBuilderState)
+    {
+        if (builderModeActive == newBuilderState) return;
+        ToggleBuilderMode();
+
+    }
     public void ToggleBuilderMode()
     {
         builderModeActive = !builderModeActive;
@@ -36,14 +43,14 @@ public class BuildModeController : MonoBehaviour
 
     private void EnterPlayMode()
     {
-        builderButton.color = playModeColor;
+        builderButton.sprite = build_sprite;
         playerBehaviour.SetFrozen(false);
         lineController.GenerateCollider(); // Generate line collider
     }
 
     private void EnterBuildMode()
     {
-        builderButton.color = buildModeColor;
+        builderButton.sprite = go_sprite;
         playerBehaviour.Respawn(true);
     }
 }
