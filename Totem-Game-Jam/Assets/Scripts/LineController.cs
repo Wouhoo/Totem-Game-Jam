@@ -4,8 +4,6 @@ using System.Linq;
 
 public class LineController : MonoBehaviour
 {
-    // Script for drawing a line between the nodes
-
     private LineRenderer lineRenderer;
     private float lineWidth; // Note: the collider assumes the line's width is constant across all segments
     private Transform[] nodes;
@@ -34,7 +32,7 @@ public class LineController : MonoBehaviour
         // Make line go through nodes
         for (int i = 0; i < nodes.Length; i++) 
         { 
-            lineRenderer.SetPosition(i, nodes[i].position);
+            lineRenderer.SetPosition(i, new Vector3(nodes[i].position.x, nodes[i].position.y, -3)); // Force line to always have the same z
         }
         // Regenerate collider
         // NOTE: When build & playmode are implemented, this should be done when pressing play, not every frame

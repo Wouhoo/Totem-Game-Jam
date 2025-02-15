@@ -33,7 +33,7 @@ public class DragNode : MonoBehaviour
             // Keep current X position if X movement is frozen, otherwise update to new X (and likewise for Y)
             float newX = freezeX ? currPos.x : Mathf.Clamp(newPos.x, startPos.x + xBounds[0], startPos.x + xBounds[1]);
             float newY = freezeY ? currPos.y : Mathf.Clamp(newPos.y, startPos.y + yBounds[0], startPos.y + yBounds[1]);
-            transform.position = new Vector2(newX, newY);
+            transform.position = new Vector3(newX, newY, -5); // Force nodes to always render at same z
         }
     }
 

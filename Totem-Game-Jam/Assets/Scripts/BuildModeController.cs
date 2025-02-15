@@ -6,31 +6,30 @@ public class BuildModeController : MonoBehaviour
 
     public bool builderModeActive = true;
 
-    public GameObject BuilderButton;
-    private GameObject Player;
+    [SerializeField] Image builderButton;
+    private PlayerBehaviour playerBehaviour;
+    private Color buildModeColor = Color.green;
+    private Color playModeColor = Color.red;
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player");
+        playerBehaviour = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
     }
 
     public void ToggleBuilderMode()
     {
         builderModeActive = !builderModeActive;
-        if (builderModeActive)
+        // If we are now in play mode (after pressing the button)
+        if (!builderModeActive)
         {
-            BuilderButton.GetComponent<Image>().color = new Color(0, 1, 0);
-            Player.GetComponent<PlayerBehaviour>().SetFrozen(false);
+            builderButton.color = playModeColor;
+            playerBehaviour.SetFrozen(false);
         }
+        // If we are now in build mode
         else
         {
-            BuilderButton.GetComponent<Image>().color = new Color(1, 0, 0);
-            PlayerBehaviour pb = Player.GetComponent<PlayerBehaviour>();
-            pb.Respawn(true);
+            builderButton.color = buildModeColor;
+            playerBehaviour.Respawn(true);
         }
-
     }
-
-
-
 }
