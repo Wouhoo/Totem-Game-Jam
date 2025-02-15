@@ -21,11 +21,15 @@ public class MarkerBehaviour : MonoBehaviour
 
     void Awake()
     {
-        if (_type != Type.Finish)
+        if (_text.TryGetComponent(out TMPro.TextMeshPro text))
         {
-            if (_text.TryGetComponent(out TMPro.TextMeshPro text))
+            if (_type != Type.Finish)
             {
                 text.text = _value.ToString();
+            }
+            else
+            {
+                text.text = "F";
             }
         }
     }
@@ -42,7 +46,11 @@ public class MarkerBehaviour : MonoBehaviour
                         {
                             if (rigidbody.linearVelocity.magnitude > _value)
                             {
-                                Debug.Log("Game Over");
+                                Debug.Log("Player Over Limit!");
+                                if (collider.gameObject.TryGetComponent(out PlayerBehaviour player))
+                                {
+                                    player.Kill();
+                                }
                             }
                             else
                             {
@@ -58,7 +66,11 @@ public class MarkerBehaviour : MonoBehaviour
                         {
                             if (rigidbody.linearVelocity.magnitude < _value)
                             {
-                                Debug.Log("Game Over");
+                                Debug.Log("Player Under Limit!");
+                                if (collider.gameObject.TryGetComponent(out PlayerBehaviour player))
+                                {
+                                    player.Kill();
+                                }
                             }
                             else
                             {
