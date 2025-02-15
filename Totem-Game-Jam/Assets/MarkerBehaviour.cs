@@ -30,7 +30,7 @@ public class MarkerBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(UnityEngine.Collider collider)
+    void OnTriggerEnter2D(UnityEngine.Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
@@ -38,7 +38,7 @@ public class MarkerBehaviour : MonoBehaviour
             {
                 case Type.Upper:
                     {
-                        if (collider.TryGetComponent(out Rigidbody2D rigidbody))
+                        if (collider.gameObject.TryGetComponent(out Rigidbody2D rigidbody))
                         {
                             if (rigidbody.linearVelocity.magnitude > _value)
                             {
@@ -54,7 +54,7 @@ public class MarkerBehaviour : MonoBehaviour
                     
                 case Type.Lower:
                     {
-                        if (collider.TryGetComponent(out Rigidbody2D rigidbody))
+                        if (collider.gameObject.TryGetComponent(out Rigidbody2D rigidbody))
                         {
                             if (rigidbody.linearVelocity.magnitude < _value)
                             {
