@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class SpeedPowerup : MonoBehaviour
+public class SpeedPowerup : DragPowerup
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (!isBuilderMode())
+        {
+            Vector2 addedForce = player.GetComponent<Rigidbody2D>().linearVelocity;
+            addedForce.Scale(new Vector2(2.3f, 2.3f));
+            player.GetComponent<Rigidbody2D>().linearVelocity = addedForce;
+            this.pickup();
+            transform.position = new Vector3(transform.position.x, transform.position.y, 100);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

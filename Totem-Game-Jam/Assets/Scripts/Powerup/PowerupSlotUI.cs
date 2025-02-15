@@ -109,20 +109,6 @@ public class PowerupSlotUI : MonoBehaviour
     }
 
 
-
-    public void OnHoverEnter()
-    {
-        Debug.Log("Hover Enter");
-        SetBorderColor(borderSettings.hoverColor);
-    }
-
-    public void OnHoverExit()
-    {
-        Debug.Log("Hover Exit");
-        SetBorderColor(borderSettings.defaultColor);
-    }
-
-
     public void OnMouseUp()
     {
         if (GetDragObject() == null)
@@ -138,8 +124,9 @@ public class PowerupSlotUI : MonoBehaviour
             return;
         }
         GameObject powerupObject = Instantiate(GetPrefab(), position, Quaternion.identity);
-        powerupObject.GetComponent<Collider>().isTrigger = true;
-
+        powerupObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        powerupObject.transform.position = new Vector3(powerupObject.transform.position.x, powerupObject.transform.position.y, -9);
+        powerupObject.GetComponent<DragPowerup>().Start();
         GetInventory().UsePowerup(powerUpType);
     }
 
