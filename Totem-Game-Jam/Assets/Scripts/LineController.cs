@@ -4,8 +4,6 @@ using System.Linq;
 
 public class LineController : MonoBehaviour
 {
-    // Script for drawing a line between the nodes
-
     private LineRenderer lineRenderer;
     private float lineWidth; // Note: the collider assumes the line's width is constant across all segments
     private Transform[] nodes;
@@ -20,11 +18,11 @@ public class LineController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
 
         // Get nodes & extract their transforms
-        GameObject[] all_nodes = GameObject.FindGameObjectsWithTag("Node");
-        nodes = new Transform[all_nodes.Length];
-        for (int i = 0; i < all_nodes.Length; i++)
+        int childCount = transform.childCount;
+        nodes = new Transform[childCount];
+        for(int i = 0; i < childCount; i++)
         {
-            nodes[i] = all_nodes[i].GetComponent<Transform>();
+            nodes[i] = transform.GetChild(i);
         }
         lineRenderer.positionCount = nodes.Length;
     }
@@ -34,14 +32,12 @@ public class LineController : MonoBehaviour
         // Make line go through nodes
         for (int i = 0; i < nodes.Length; i++) 
         { 
-            lineRenderer.SetPosition(i, nodes[i].position);
+            lineRenderer.SetPosition(i, new Vector3(nodes[i].position.x, nodes[i].position.y, -3)); // Force line to always have the same z
         }
-        // Regenerate collider
-        // NOTE: When build & playmode are implemented, this should be done when pressing play, not every frame
-        GenerateCollider();
     }
 
-    private void GenerateCollider()
+    // Regenerate collider (called from the build mode controller)
+    public void GenerateCollider()
     {
         int no_lines = nodes.Length - 1;
         polygonCollider.pathCount = no_lines;

@@ -17,7 +17,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        sfxPlayer = FindObjectOfType<SFXPlayer>();
+        sfxPlayer = FindFirstObjectByType<SFXPlayer>();
     }
 
     private void Update()
@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour
     public void BackToMenu()
     {
         sfxPlayer.ClickButtonSound();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 

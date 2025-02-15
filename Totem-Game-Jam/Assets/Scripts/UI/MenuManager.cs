@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        sfxPlayer = FindObjectOfType<SFXPlayer>();
+        sfxPlayer = FindFirstObjectByType<SFXPlayer>();
     }
 
     public void StartGame()
