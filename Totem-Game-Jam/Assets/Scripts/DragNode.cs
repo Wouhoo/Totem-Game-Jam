@@ -6,15 +6,19 @@ public class DragNode : MonoBehaviour
 
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeY;
+    [SerializeField] Vector2 xBounds;
+    [SerializeField] Vector2 yBounds;
     [SerializeField] GameObject[] UIArrows; // Arrows MUST follow the order up > right > down > left!
-    [SerializeField] bool inBuildMode; // For testing purposes this bool can be clicked from the editor
-    // Once we have build and playmode implemented, this bool should instead be read from the "state manager"
 
     private bool isDragging;
     private Vector2 offset;
+    private Vector2 startPos;
+    private BuildModeController buildModeController;
 
     private void Start()
     {
+        buildModeController = FindFirstObjectByType<BuildModeController>();
+        startPos = transform.position;
         // Initially set all UI arrows inactive
         for (int i = 0; i < UIArrows.Length; i++) { UIArrows[i].SetActive(false); }
     }
@@ -27,14 +31,16 @@ public class DragNode : MonoBehaviour
             Vector2 currPos = (Vector2)transform.position;
             Vector2 newPos = GetMousePos() - offset;
             // Keep current X position if X movement is frozen, otherwise update to new X (and likewise for Y)
-            transform.position = new Vector2(freezeX ? currPos.x : newPos.x, freezeY ? currPos.y : newPos.y);
+            float newX = freezeX ? currPos.x : Mathf.Clamp(newPos.x, startPos.x + xBounds[0], startPos.x + xBounds[1]);
+            float newY = freezeY ? currPos.y : Mathf.Clamp(newPos.y, startPos.y + yBounds[0], startPos.y + yBounds[1]);
+            transform.position = new Vector2(newX, newY);
         }
     }
 
     // When clicking on the piece in build mode: start dragging
     private void OnMouseDown()
     {
-        if (inBuildMode)
+        if (buildModeController.builderModeActive)
         {
             isDragging = true;
             offset = GetMousePos() - (Vector2)transform.position;
@@ -45,7 +51,7 @@ public class DragNode : MonoBehaviour
     // When releasing the piece in build mode: stop dragging
     private void OnMouseUp()
     {
-        if (inBuildMode)
+        if (buildModeController.builderModeActive)
         {
             isDragging = false;
             UISetActive(false);

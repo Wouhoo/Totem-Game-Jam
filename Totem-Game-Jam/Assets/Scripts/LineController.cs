@@ -20,11 +20,11 @@ public class LineController : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
 
         // Get nodes & extract their transforms
-        GameObject[] all_nodes = GameObject.FindGameObjectsWithTag("Node");
-        nodes = new Transform[all_nodes.Length];
-        for (int i = 0; i < all_nodes.Length; i++)
+        int childCount = transform.childCount;
+        nodes = new Transform[childCount];
+        for(int i = 0; i < childCount; i++)
         {
-            nodes[i] = all_nodes[i].GetComponent<Transform>();
+            nodes[i] = transform.GetChild(i);
         }
         lineRenderer.positionCount = nodes.Length;
     }

@@ -17,7 +17,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        sfxPlayer = FindObjectOfType<SFXPlayer>();
+        sfxPlayer = FindFirstObjectByType<SFXPlayer>();
     }
 
     private void Update()

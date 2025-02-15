@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class BuildModeController : MonoBehaviour
 {
 
-    bool builderModeActive = false;
+    public bool builderModeActive = true;
 
     public GameObject BuilderButton;
     private GameObject Player;
