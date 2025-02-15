@@ -57,7 +57,7 @@ public class MarkerBehaviour : MonoBehaviour
                             else
                             {
                                 hasBeenPassed = true;
-                                GameObject.Find("Line").GetComponent<LineController>().NotifyMarkerPassed();
+                                GameObject.FindFirstObjectByType<LineController>().NotifyMarkerPassed();
                             }
                         }
                         break;
@@ -78,7 +78,7 @@ public class MarkerBehaviour : MonoBehaviour
                             else
                             {
                                 hasBeenPassed = true;
-                                GameObject.Find("Line").GetComponent<LineController>().NotifyMarkerPassed();
+                                FindFirstObjectByType<LineController>().NotifyMarkerPassed();
                             }
                         }
                         break;

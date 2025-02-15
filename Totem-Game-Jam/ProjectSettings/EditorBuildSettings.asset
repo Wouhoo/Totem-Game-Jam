@@ -8,9 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 25ca17f4652d1be458056d08b0d8b9dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelTemplate.unity
     guid: 68024392eb7386a4cb714b440118adbf
+  - enabled: 1
+    path: Assets/Scenes/Level_Wedge.unity
+    guid: 3ad4dff3a5ef815418f5d1ce21dab76b
+  - enabled: 1
+    path: Assets/Scenes/Level_ThreadTheNeedle.unity
+    guid: a26ac8d10731ad14dbaa99815af51ad3
+  - enabled: 1
+    path: Assets/Scenes/Level_ZigZag.unity
+    guid: d186d3248acd63c4b97801eeaa7fd129
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: a19469727dc0b3846bdf566b262cbd4f
